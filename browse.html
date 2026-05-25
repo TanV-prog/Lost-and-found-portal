@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Browse Items</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="page-wrapper">
+
+    <!-- Navbar -->
+    <nav class="navbar">
+      <span class="nav-title">Campus Lost & Found</span>
+      <div class="nav-links">
+        <a href="post.html">+ Post Item</a>
+        <a href="#" onclick="toggleMyClaims()">My Claims</a>
+        <a href="#" onclick="logout()">Logout</a>
+      </div>
+    </nav>
+
+    <!-- My Claims Section -->
+   <div id="myClaimsSection" class="hidden">
+     <h3 style="margin-bottom: 1rem; color: #1a1a2e;">My Claim Requests</h3>
+     <div id="myClaimsList"></div>
+     <hr style="margin: 1.5rem 0;">
+    </div>
+
+    <!-- Search and Filter -->
+    <div class="search-bar">
+      <input type="text" id="searchInput" placeholder="Search by keyword..." oninput="renderItems()">
+      <select id="filterType" onchange="renderItems()">
+        <option value="all">All</option>
+        <option value="lost">Lost</option>
+        <option value="found">Found</option>
+      </select>
+    </div>
+
+    <!-- Items Grid -->
+    <div id="itemsGrid" class="items-grid"></div>
+
+  </div>
+
+  <script src="app.js"></script>
+  <script>
+    // Check if user is logged in
+    const currentUser = JSON.parse(localStorage.getItem('lf_current_user'));
+    if (!currentUser) window.location.href = 'index.html';
+
+    renderItems();
+  </script>
+</body>
+</html>

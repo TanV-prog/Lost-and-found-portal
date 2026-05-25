@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Panel</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="page-wrapper">
+
+    <!-- Navbar -->
+    <nav class="navbar">
+      <span class="nav-title">Admin Panel</span>
+      <div class="nav-links">
+        <a href="#" onclick="logout()">Logout</a>
+      </div>
+    </nav>
+
+    <!-- Tabs -->
+    <div class="toggle-btns" style="max-width: 400px; margin-bottom: 1.5rem;">
+      <button id="tabPosts" class="active" onclick="showTab('posts')">All Posts</button>
+      <button id="tabClaims" onclick="showTab('claims')">Claim Requests</button>
+      <button id="tabUsers" onclick="showTab('users')">Users</button>
+    </div>
+
+    <!-- Posts Tab -->
+    <div id="postsTab">
+      <div id="adminItemsGrid" class="items-grid"></div>
+    </div>
+
+    <!-- Claims Tab -->
+    <div id="claimsTab" class="hidden">
+      <div id="claimsList"></div>
+    </div>
+
+    <!-- Users Tab -->
+    <div id="usersTab" class="hidden">
+      <div id="usersList"></div>
+    </div>
+
+  </div>
+
+  <script src="app.js"></script>
+  <script>
+    // Only admin can access this page
+    const currentUser = JSON.parse(localStorage.getItem('lf_current_user'));
+    if (!currentUser || !currentUser.isAdmin) {
+      window.location.href = 'index.html';
+    }
+
+    showTab('posts');
+  </script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Post Item</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="page-wrapper">
+
+    <!-- Navbar -->
+    <nav class="navbar">
+      <span class="nav-title">Campus Lost & Found</span>
+      <div class="nav-links">
+        <a href="browse.html">Browse Items</a>
+        <a href="#" onclick="logout()">Logout</a>
+      </div>
+    </nav>
+
+    <!-- Post Form -->
+    <div class="container">
+      <h2 style="margin-bottom: 1.2rem; color: #1a1a2e;">Post a Lost / Found Item</h2>
+
+      <form id="postForm">
+        <select id="itemType" required>
+          <option value="">-- Select Type --</option>
+          <option value="lost">Lost</option>
+          <option value="found">Found</option>
+        </select>
+
+        <input type="text" id="itemTitle" placeholder="Item Title (e.g. Text book)" required>
+
+        <input type="text" id="itemCategory" placeholder="Category (e.g. Books, Phone, Keys)" required>
+
+        <input type="text" id="itemLocation" placeholder="Location Found / Lost (e.g. Library)" required>
+
+        <textarea id="itemDesc" placeholder="Describe the item..." rows="4" required></textarea>
+
+        <label style="font-size: 0.9rem; color: #555;">Upload Image</label>
+        <input type="file" id="itemImage" accept="image/*" required>
+
+        <button type="submit">Post Item</button>
+        <p id="postError" class="error"></p>
+      </form>
+    </div>
+
+  </div>
+
+  <script src="app.js"></script>
+  <script>
+    const currentUser = JSON.parse(localStorage.getItem('lf_current_user'));
+    if (!currentUser) window.location.href = 'index.html';
+  </script>
+</body>
+</html>
